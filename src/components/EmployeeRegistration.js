@@ -7,6 +7,8 @@ const EmployeeRegistration = () => {
   const [selectedJobRoles, setSelectedJobRoles] = useState([]); // For multiple job roles
   const [employeeName, setEmployeeName] = useState('');
   const [employeeState, setEmployeeState] = useState('');
+  //add employeeRIWID like employeeName and employeeState
+  const [employeeRIWID, setEmployeeRIWID] = useState(''); // For employee RIW ID
 
   useEffect(() => {
     // Fetch the available job roles from the backend
@@ -33,6 +35,7 @@ const EmployeeRegistration = () => {
     const newEmployee = {
       name: employeeName,
       state: employeeState,
+      riwid: employeeRIWID, // Include employee RIW ID in the request
       jobRoles: selectedJobRoles, // Send selected job roles to the server
     };
 
@@ -42,6 +45,7 @@ const EmployeeRegistration = () => {
       // Optionally, reset the form after successful submission
       setEmployeeName('');
       setEmployeeState('');
+      setEmployeeRIWID(''); // Reset employee RIW ID
       setSelectedJobRoles([]);
     } catch (error) {
       console.error('There was an error registering the employee:', error);
@@ -71,6 +75,17 @@ const EmployeeRegistration = () => {
             id="employeeState"
             value={employeeState}
             onChange={(e) => setEmployeeState(e.target.value)}
+            required
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="employeeRIWID">Employee RIW ID:</label>
+          <input
+            type="text"
+            id="employeeRIWID"
+            value={employeeRIWID}
+            onChange={(e) => setEmployeeRIWID(e.target.value)}
             required
           />
         </div>
