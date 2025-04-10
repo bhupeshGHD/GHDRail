@@ -97,6 +97,10 @@ const EmployeeList = () => {
                 <Typography variant="body1" paragraph>
                   <strong>Employee ID:</strong> {selectedEmployee.id}
                 </Typography>
+                {/* Employee RIW ID */}
+                <Typography variant="body1" paragraph>      
+                  <strong>Employee RIW ID:</strong> {selectedEmployee.riwid}
+                </Typography>
 
                 {/* Job Roles */}
                 <Typography variant="h6" gutterBottom>

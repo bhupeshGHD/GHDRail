@@ -73,14 +73,16 @@ app.get('/employee-job-roles', async (req, res) => {
 
 // Route to add a new employee along with job roles
 app.post('/employees', async (req, res) => {
-  const { name, state, jobRoles } = req.body;  // Extract data from request body
+  const { name, state, riwid, jobRoles } = req.body;  // Extract data from request body
+  
+  console.log('Received payload:', req.body);
 
   try {
     // Step 1: Insert the new employee
     const employeeResult = await pool.query(
-      `INSERT INTO employees (name, state) 
-       VALUES ($1, $2) RETURNING id`, 
-      [name, state]
+      `INSERT INTO employees (name, state, riwid) 
+       VALUES ($1, $2, $3) RETURNING id`, 
+      [name, state, riwid]
     );
     
     const employeeId = employeeResult.rows[0].id;  // Get the new employee's ID
